@@ -29,6 +29,28 @@ async sortLTH() {
 
 }
 
+async sortHTL() {
+
+     // Select "Price High to Low"
+  await this.page.selectOption('.product_sort_container', 'hilo');
+
+  // Get all product prices
+  const prices = await this.page.locator('.inventory_item_price').allTextContents();
+
+  // Convert to numbers
+  const actualPrices = prices.map(p => parseFloat(p.replace('$', '')));
+
+  // Create sorted copy
+  const sortedPrices = [...actualPrices].sort((a, b) => b - a);
+
+  console.log("Actual:", actualPrices);
+  console.log("Sorted:", sortedPrices);
+
+  // Compare both arrays
+  expect(actualPrices).toEqual(sortedPrices);
+
+}
+
 }
 
 module.exports = SortingPage

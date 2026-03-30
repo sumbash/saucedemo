@@ -20,7 +20,17 @@ test.describe('sorting  Tests', () => {
   test('should sort from low to high', async () => {
     // Now call sorting test after login
     await sortingPage.sortLTH();
+    await page.waitForTimeout(3000) // Add a timeout to observe the sorting result before the page closes
   });
+
+    test('should sort from high to low', async () => {
+    // Now call sorting test after login
+    await sortingPage.sortHTL();
+
+    await page.waitForTimeout(3000) // Add a timeout to observe the sorting result before the page closes
+
+  });
+
 
     
 
